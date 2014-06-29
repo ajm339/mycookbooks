@@ -10,7 +10,7 @@
 bash 'update apt-get' do
   user 'root'
   code <<-EOC
-    apt-get update
+    sudo apt-get update
   EOC
 end
 
