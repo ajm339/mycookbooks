@@ -16,3 +16,8 @@ https://github.com/mdxp/nodejs-cookbook
 postgresql
 https://github.com/tombh/chef-openruko/tree/master/cookbooks/postgresql
 
+yum-epel
+https://github.com/opscode-cookbooks/yum-epel
+
+yum
+https://github.com/opscode-cookbooks/yum
