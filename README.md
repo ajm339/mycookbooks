@@ -16,6 +16,9 @@ https://github.com/mdxp/nodejs-cookbook
 postgresql
 https://github.com/tombh/chef-openruko/tree/master/cookbooks/postgresql
 
+redis-config
+http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cookbook.html
+
 yum-epel
 https://github.com/opscode-cookbooks/yum-epel
 
