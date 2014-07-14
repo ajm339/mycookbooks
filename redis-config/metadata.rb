@@ -1,6 +1,6 @@
 name             'redis-config'
-maintainer       'YOUR_COMPANY_NAME'
-maintainer_email 'YOUR_EMAIL'
+maintainer       'Daapr'
+maintainer_email 'Daapr'
 license          'All rights reserved'
 description      'Installs/Configures redis-config'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
