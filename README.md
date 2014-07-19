@@ -25,6 +25,9 @@ http://docs.aws.amazon.com/opsworks/latest/userguide/other-services-redis-cookbo
 redisio
 https://github.com/brianbianco/redisio
 
+sidekiq_start
+Written by me
+
 yum-epel
 https://github.com/opscode-cookbooks/yum-epel
 
