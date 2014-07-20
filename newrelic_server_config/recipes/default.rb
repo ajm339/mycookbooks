@@ -24,7 +24,7 @@ execute "Run the install command:" do
 end
 
 execute "Add license key to config file: (See /etc/newrelic/nrsysmond.cfg for other config options)" do
-  command "nrsysmond-config --set license_key=28ade0631cd3cfaead8bdc39f16fa602f814e61c"
+  command "nrsysmond-config --set license_key=" + node[:deploy]['daapr']['newrelic']['server_monitoring']['license']
 end
 
 execute "Start the daemon:" do
