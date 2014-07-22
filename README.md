@@ -16,6 +16,9 @@ https://github.com/escapestudios-cookbooks/newrelic
 nodejs
 https://github.com/mdxp/nodejs-cookbook
 
+opsworks_custom_env
+https://github.com/joeyAghion/opsworks_custom_env
+
 postgresql
 https://github.com/tombh/chef-openruko/tree/master/cookbooks/postgresql
 
