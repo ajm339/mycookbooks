@@ -10,8 +10,11 @@ https://github.com/opscode-cookbooks/build-essential
 libpq-dev
 https://github.com/aerogami-cookbooks/libpq-dev
 
-newrelic
-https://github.com/escapestudios-cookbooks/newrelic
+newrelic_server_config
+Follows NewRelic Script Installation
+
+newrelic_server_remove
+Follows NewRelic Script Removal
 
 nodejs
 https://github.com/mdxp/nodejs-cookbook
