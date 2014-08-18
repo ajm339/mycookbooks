@@ -2,7 +2,7 @@
 # Cookbook Name:: newrelic_server_config
 # Recipe:: default
 #
-# Copyright 2014, Daapr
+# Copyright 2014, Alex Meyrs
 #
 # All rights reserved - Do Not Redistribute
 #
@@ -24,7 +24,7 @@ execute "Run the install command:" do
 end
 
 execute "Add license key to config file: (See /etc/newrelic/nrsysmond.cfg for other config options)" do
-  command "nrsysmond-config --set license_key=" + node[:deploy]['daapr']['newrelic']['server_monitoring']['license']
+  command "nrsysmond-config --set license_key=" + node[:deploy]['YOUR_APP_NAME_HERE']['newrelic']['server_monitoring']['license']
 end
 
 execute "Start the daemon:" do
