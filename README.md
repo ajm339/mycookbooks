@@ -1,7 +1,9 @@
 mycookbooks
 ==============
 
-Used for the tutorial I made at http://www.alexjmeyers.com/amazon_web_services_guide
+###Used for the tutorial I made at http://www.alexjmeyers.com/amazon_web_services_guide
+
+#####Links to public cookbooks used in this repository
 
 apt
 https://github.com/opscode-cookbooks/apt
