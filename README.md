@@ -1,6 +1,8 @@
 mycookbooks
 ==============
 
+Used for the tutorial I made at http://www.alexjmeyers.com/amazon_web_services_guide
+
 apt
 https://github.com/opscode-cookbooks/apt
 
