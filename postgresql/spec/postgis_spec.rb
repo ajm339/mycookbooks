@@ -3,11 +3,12 @@ require "spec_helper"
 describe "postgresql::postgis" do
   describe "debian" do
     let(:chef_run) do
-      ChefSpec::Runner.new(
+      ChefSpec::SoloRunner.new(
         platform: "debian",
         version: "7.2"
       ).converge(described_recipe)
     end
+
     let(:log_message) do
       "The `postgis` recipe is not available for Debian at this time"
     end
@@ -23,10 +24,10 @@ describe "postgresql::postgis" do
 
   describe "ubuntu" do
     let(:chef_run) do
-      ChefSpec::Runner.new{ |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set["postgresql"]["version"] = "9.3"
         node.set["postgis"]["version"] = "2.1"
-      }.converge(described_recipe)
+      end.converge(described_recipe)
     end
 
     it "includes the default recipe" do

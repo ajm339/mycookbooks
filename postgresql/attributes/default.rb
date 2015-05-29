@@ -7,17 +7,23 @@
 # Copyright 2012-2013, Phil Cohen
 #
 
-default["postgresql"]["version"]                         = "9.3"
+default["postgresql"]["version"]                         = "9.4"
+
+#----------------------------------------------------------------------------
+# DAEMON CONTROL
+#----------------------------------------------------------------------------
+
+default["postgresql"]["service_actions"]                 = %w[enable start]
 default["postgresql"]["cfg_update_action"]               = :restart
 
 #------------------------------------------------------------------------------
-# APT Repository
+# APT REPOSITORY
 #------------------------------------------------------------------------------
 
 default["postgresql"]["apt_distribution"] = node["lsb"]["codename"]
 default["postgresql"]["apt_repository"]   = "apt.postgresql.org"
 default["postgresql"]["apt_uri"]          = "http://apt.postgresql.org/pub/repos/apt"
-default["postgresql"]["apt_components"]   = ["main"]
+default["postgresql"]["apt_components"]   = ["main", node["postgresql"]["version"]]
 default["postgresql"]["apt_key"]          = "https://www.postgresql.org/media/keys/ACCC4CF8.asc"
 
 default["postgresql"]["environment_variables"]           = {}
@@ -30,12 +36,6 @@ default["postgresql"]["start"]                           = "auto"  # auto, manua
 default["postgresql"]["conf"]                            = {}
 default["postgresql"]["conf_custom"]                     = false  # if true, only use node["postgresql"]["conf"]
 default["postgresql"]["initdb_options"]                  = "--locale=en_US.UTF-8"
-
-#------------------------------------------------------------------------------
-# POSTGIS
-#------------------------------------------------------------------------------
-
-default["postgis"]["version"]                            = "1.5"
 
 #------------------------------------------------------------------------------
 # FILE LOCATIONS
@@ -360,6 +360,8 @@ default["postgresql"]["restart_after_crash"]             = "on"
 
 default["postgresql"]["users"]                           = []
 default["postgresql"]["databases"]                       = []
+default["postgresql"]["extensions"]                      = []
+default["postgresql"]["languages"]                       = []
 
 #------------------------------------------------------------------------------
 # CUSTOMIZED OPTIONS

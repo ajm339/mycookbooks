@@ -92,6 +92,12 @@ ssl = <%= node["postgresql"]["ssl"] %>        # (change requires restart)
 <% if node["postgresql"]["version"].to_f > 9.1 %>
 ssl_cert_file = '<%= node["postgresql"]["ssl_cert_file"] %>' # (change requires restart)
 ssl_key_file = '<%= node["postgresql"]["ssl_key_file"] %>'   # (change requires restart)
+<% unless node["postgresql"]["ssl_ca_file"].empty? %>
+ssl_ca_file = '<%= node["postgresql"]["ssl_ca_file"] %>'   # (change requires restart)
+<% end -%>
+<% unless node["postgresql"]["ssl_crl_file"].empty? %>
+ssl_crl_file = '<%= node["postgresql"]["ssl_crl_file"] %>'   # (change requires restart)
+<% end -%>
 <% end %>
 #password_encryption = <%= node["postgresql"]["password_encryption"] %>
 #db_user_namespace = <%= node["postgresql"]["db_user_namespace"] %>
@@ -120,7 +126,9 @@ ssl_key_file = '<%= node["postgresql"]["ssl_key_file"] %>'   # (change requires 
 
 shared_buffers = <%= node["postgresql"]["shared_buffers"] %>     # min 128kB
           # (change requires restart)
-#temp_buffers = <%= node["postgresql"]["temp_buffers"] %>     # min 800kB
+<%- if node["postgresql"]["temp_buffers"] %>
+temp_buffers = <%= node["postgresql"]["temp_buffers"] %>     # min 800kB
+<%- end %>
 <%- if node["postgresql"]["max_prepared_transactions"] %>
 max_prepared_transactions = <%= node["postgresql"]["max_prepared_transactions"] %>    # zero disables the feature
 <%- end%>
@@ -194,7 +202,9 @@ wal_buffers = <%= node["postgresql"]["wal_buffers"] %>     # min 32kB, -1 sets b
           # (change requires restart)
 wal_writer_delay = <%= node["postgresql"]["wal_writer_delay"] %>   # 1-10000 milliseconds
 
-#commit_delay = <%= node["postgresql"]["commit_delay"] %>     # range 0-100000, in microseconds
+<%- if node["postgresql"]["commit_delay"] %>
+commit_delay = <%= node["postgresql"]["commit_delay"] %>     # range 0-100000, in microseconds
+<%- end %>
 #commit_siblings = <%= node["postgresql"]["commit_siblings"] %>      # range 1-1000
 
 # - Checkpoints -
@@ -290,8 +300,12 @@ hot_standby_feedback = <%= node["postgresql"]["hot_standby_feedback"] %>   # sen
 
 # - Planner Cost Constants -
 
-#seq_page_cost = <%= node["postgresql"]["seq_page_cost"] %>      # measured on an arbitrary scale
-#random_page_cost = <%= node["postgresql"]["random_page_cost"] %>     # same scale as above
+<%- if node["postgresql"]["seq_page_cost"] %>
+seq_page_cost = <%= node["postgresql"]["seq_page_cost"] %>      # measured on an arbitrary scale
+<%- end %>
+<%- if node["postgresql"]["random_page_cost"] %>
+random_page_cost = <%= node["postgresql"]["random_page_cost"] %>     # same scale as above
+<%- end %>
 #cpu_tuple_cost = <%= node["postgresql"]["cpu_tuple_cost"] %>      # same scale as above
 #cpu_index_tuple_cost = <%= node["postgresql"]["cpu_index_tuple_cost"] %>   # same scale as above
 #cpu_operator_cost = <%= node["postgresql"]["cpu_operator_cost"] %>   # same scale as above
@@ -341,7 +355,7 @@ logging_collector = <%= node["postgresql"]["logging_collector"] %>    # Enable c
 # These are only used if logging_collector is on:
 log_directory = '<%= node["postgresql"]["log_directory"] %>'   # directory where log files are written,
           # can be absolute or relative to PGDATA
-#log_filename = '<%= node["postgresql"]["log_filename"] %>'  # log file name pattern,
+log_filename = '<%= node["postgresql"]["log_filename"] %>'  # log file name pattern,
           # can include strftime() escapes
 log_file_mode = <%= node["postgresql"]["log_file_mode"] %>     # creation mode for log files,
           # begin with 0 to use octal notation

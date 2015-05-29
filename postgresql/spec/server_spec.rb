@@ -2,20 +2,20 @@ require "spec_helper"
 
 describe "postgresql::server" do
   let(:chef_run) do
-    ChefSpec::Runner.new{ |node|
+    ChefSpec::SoloRunner.new do |node|
       node.set["postgresql"]["version"] = "9.3"
-    }.converge(described_recipe)
+    end.converge(described_recipe)
   end
 
   before do
     stub_command("pgrep postgres").and_return(false)
-    stub_command("test -f /var/lib/postgresql/9.3/main/PG_VERSION").and_return(false)
+    stub_command("test -f /var/lib/postgresql/9.3/main/PG_VERSION")
+      .and_return(false)
   end
 
   it "includes the default recipe" do
     expect(chef_run).to include_recipe("postgresql::default")
   end
-
 
   context "auto-start for the service to allow custom configuration" do
     context "postgres is not already running" do
@@ -38,28 +38,16 @@ describe "postgresql::server" do
     end
   end
 
-
-  it "installs the server package" do
+  specify do
     expect(chef_run).to install_package("postgresql-9.3")
-  end
 
-  it "includes the data directory recipe" do
     expect(chef_run).to include_recipe("postgresql::data_directory")
-  end
-
-  it "includes the configuration recipe" do
     expect(chef_run).to include_recipe("postgresql::configuration")
-  end
-
-  it "includes the service recipe" do
     expect(chef_run).to include_recipe("postgresql::service")
-  end
 
-  it "includes the `pg_user` recipe to setup users" do
-    expect(chef_run).to include_recipe("postgresql::pg_user")
-  end
-
-  it "includes the `pg_database` recipe to setup databases" do
-    expect(chef_run).to include_recipe("postgresql::pg_database")
+    expect(chef_run).to include_recipe("postgresql::setup_users")
+    expect(chef_run).to include_recipe("postgresql::setup_databases")
+    expect(chef_run).to include_recipe("postgresql::setup_extensions")
+    expect(chef_run).to include_recipe("postgresql::setup_languages")
   end
 end
