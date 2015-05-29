@@ -25,6 +25,8 @@ https://github.com/joeyAghion/opsworks_custom_env
 
 postgresql
 https://github.com/tombh/chef-openruko/tree/master/cookbooks/postgresql
+***Updated Version
+https://github.com/phlipper/chef-postgresql
 
 python
 https://github.com/poise/python
