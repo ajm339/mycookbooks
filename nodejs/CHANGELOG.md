@@ -1,3 +1,34 @@
+## v2.4.0
+  * Move `npm_packages` to his own recipe
+  * Fix different race conditions when using direct recipe call
+  * Fix npm recipe
+
+## v2.3.2
+  * Fix package recipe
+
+## v2.3.0
+  * Support io.js. Use node['nodejs']['engine'].
+  * Add MacOS support via homebrew
+
+## v2.2.0
+  * Add node['nodejs']['keyserver']
+  * Update arm checksum
+  * Fix `npm_packages` JSON
+
+## v2.1.0
+  * Use official nodesource repository
+  * Add node['nodejs']['npm_packages'] to install npm package with `default` recipe
+
+## v2.0.0 
+  * Travis integration
+  * Gems updated
+  * Rewrite cookbook dependencies
+  * Added complete test-kitchen integration : Rake, rubocop, foodcritic, vagrant, bats testing ...
+  * Added NodeJS ```install_method``` option (sources, bins or packages)
+  * Added NPM ```install_method``` option (sources or packages)
+  * NPM version can now be chosen independently from nodejs' embedded version
+  * Added a ```nodejs_npm``` LWRP to manage, install and resolve NPM packages
+
 ## v1.3.0
   * update default versions to the latest: node - v0.10.15 and npm - v1.3.5
   * default to package installation of nodejs on smartos ([@wanelo-pair][])

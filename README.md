@@ -19,6 +19,8 @@ Follows NewRelic Script Installation
 
 nodejs
 https://github.com/mdxp/nodejs-cookbook
+***Updated Version
+https://github.com/redguide/nodejs
 
 opsworks_custom_env
 https://github.com/joeyAghion/opsworks_custom_env

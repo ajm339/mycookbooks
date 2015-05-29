@@ -18,22 +18,28 @@
 #
 
 case node['platform_family']
-  when "smartos", "rhel", "debian", "fedora"
-    default['nodejs']['install_method'] = 'package'
-  else
-    default['nodejs']['install_method'] = 'source'
+when 'smartos', 'rhel', 'debian', 'fedora', 'mac_os_x'
+  default['nodejs']['install_method'] = 'package'
+else
+  default['nodejs']['install_method'] = 'source'
 end
 
-default['nodejs']['version'] = '0.10.26'
-default['nodejs']['checksum'] = 'ef5e4ea6f2689ed7f781355012b942a2347e0299da0804a58de8e6281c4b1daa'
-default['nodejs']['checksum_linux_x64'] = '305bf2983c65edea6dd2c9f3669b956251af03523d31cf0a0471504fd5920aac'
-default['nodejs']['checksum_linux_x86'] = '8fa2d952556c8b5aa37c077e2735c972c522510facaa4df76d4244be88f4dc0f'
-default['nodejs']['checksum_linux_arm-pi'] = '561ec2ebfe963be8d6129f82a7d1bc112fb8fbfc0a1323ebe38ef55850f25517'
-default['nodejs']['dir'] = '/usr/local'
-default['nodejs']['npm'] = '1.4.4'
-default['nodejs']['src_url'] = "http://nodejs.org/dist"
-default['nodejs']['make_threads'] = node['cpu'] ? node['cpu']['total'].to_i : 2
-default['nodejs']['check_sha'] = true
+default['nodejs']['engine'] = 'node' # or iojs
 
-# Set this to true to install the legacy packages (0.8.x) from ubuntu/debian repositories; default is false (using the latest stable 0.10.x)
-default['nodejs']['legacy_packages'] = false
+default['nodejs']['version'] = '0.10.26'
+
+if node['nodejs']['engine'] == 'iojs'
+  default['nodejs']['prefix_url'] = 'http://iojs.org/dist/'
+else
+  default['nodejs']['prefix_url'] = 'http://nodejs.org/dist/'
+end
+
+default['nodejs']['source']['url']      = nil # Auto generated
+default['nodejs']['source']['checksum'] = 'ef5e4ea6f2689ed7f781355012b942a2347e0299da0804a58de8e6281c4b1daa'
+
+default['nodejs']['binary']['url'] = nil # Auto generated
+default['nodejs']['binary']['checksum']['linux_x64'] = '305bf2983c65edea6dd2c9f3669b956251af03523d31cf0a0471504fd5920aac'
+default['nodejs']['binary']['checksum']['linux_x86'] = '8fa2d952556c8b5aa37c077e2735c972c522510facaa4df76d4244be88f4dc0f'
+default['nodejs']['binary']['checksum']['linux_arm-pi'] = '52a0f6ed9c0be1ea5f79de6527c481c1b803edbea6413a4fdc65a45ad401565d'
+
+default['nodejs']['make_threads'] = node['cpu'] ? node['cpu']['total'].to_i : 2
