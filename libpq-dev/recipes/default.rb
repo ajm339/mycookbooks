@@ -7,11 +7,23 @@
 # Apache 2.0
 #
 
-bash 'update apt-get' do
-  user 'root'
-  code <<-EOC
-    sudo apt-get update
-  EOC
-end
+case node['platform_family']
+  when 'debian'
+    bash 'update apt-get' do
+      user 'root'
+      code <<-EOC
+        apt-get update
+      EOC
+    end
+end #case
 
-package 'libpq-dev'
+
+package 'libpq-dev' do
+  package_name value_for_platform_family(
+      'debian'   => 'libpq-dev',
+      'rhel'     => 'postgresql8-devel',   # generic: postgresql-devel  (works with warning)
+      'mac_os_x' => 'postgresql',
+  )
+end #package
+
+
